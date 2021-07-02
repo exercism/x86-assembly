@@ -9,7 +9,7 @@ run_tests() {
     pushd "$1"
 
     sed -i.bak 's#TEST_IGNORE();#// &#' "${file}"_test.c
-    echo mv .meta/"${implementation_file}".asm "${file}".asm
+    mv .meta/"${implementation_file}".asm "${file}".asm
 
     make clean
     make
@@ -23,11 +23,11 @@ main() {
     rm -rf build
     cp -r exercises build
 
-    # pushd build/concept
-    # for exercise in *; do
-    #     run_tests "${exercise}" "exemplar"
-    # done
-    # popd
+    pushd build/concept
+    for exercise in *; do
+        run_tests "${exercise}" "exemplar"
+    done
+    popd
 
     pushd build/practice
     for exercise in *; do

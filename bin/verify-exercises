@@ -3,19 +3,18 @@
 set -e
 
 run_tests() {
-    local exercise="$(basename $1)"
-    local file="${exercise//-/_}"
+    local file="${1//-/_}"
     local implementation_file="${2}"
 
-    cd "$1"
+    pushd "$1"
 
     sed -i.bak 's#TEST_IGNORE();#// &#' "${file}"_test.c
-    mv .meta/"${implementation_file}".asm "${file}".asm
+    echo mv .meta/"${implementation_file}".asm "${file}".asm
 
     make clean
     make
 
-    cd ..
+    popd
 }
 
 main() {
@@ -24,16 +23,17 @@ main() {
     rm -rf build
     cp -r exercises build
 
-    cd build
-
-    for exercise_dir in concept/*; do
-        run_tests "${exercise_dir}" "exemplar"
+    pushd build/concept
+    for exercise in *; do
+        run_tests "${exercise}" "exemplar"
     done
+    popd
 
-    for exercise_dir in practice/*; do
-        run_tests "${exercise_dir}" "example"
+    pushd build/practice
+    for exercise in *; do
+        run_tests "${exercise}" "example"
     done
-
+    popd
 }
 
 main "$@"

@@ -4,7 +4,7 @@
   "files": {
     "solution": ["matching_brackets.asm"],
     "test": ["matching_brackets_test.c"],
-    "example": ["example.asm"]
+    "example": [".meta/example.asm"]
   },
   "source": "Ginna Baker"
 }

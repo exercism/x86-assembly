@@ -4,7 +4,7 @@
   "files": {
     "solution": ["pangram.asm"],
     "test": ["pangram_test.c"],
-    "example": ["example.asm"]
+    "example": [".meta/example.asm"]
   },
   "source": "Wikipedia",
   "source_url": "https://en.wikipedia.org/wiki/Pangram"

@@ -4,7 +4,7 @@
   "files": {
     "solution": ["leap.asm"],
     "test": ["leap_test.c"],
-    "example": ["example.asm"]
+    "example": [".meta/example.asm"]
   },
   "source": "JavaRanch Cattle Drive, exercise 3",
   "source_url": "http://www.javaranch.com/leap.jsp"

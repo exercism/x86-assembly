@@ -4,11 +4,12 @@ set -e
 
 run_tests() {
     local file="${1//-/_}"
+    local implementation_file="${2}"
 
     cd "$1"
 
     sed -i.bak 's#TEST_IGNORE();#// &#' "${file}"_test.c
-    mv .meta/example.asm "${file}".asm
+    mv .meta/"${implementation_file}".asm "${file}".asm
 
     make clean
     make
@@ -30,11 +31,11 @@ main() {
         done
     else
         for exercise in concept/*; do
-            run_tests "${exercise}"
+            run_tests "${exercise}" "exemplar"
         done
 
         for exercise in practice/*; do
-            run_tests "${exercise}"
+            run_tests "${exercise}" "example"
         done
     fi
 

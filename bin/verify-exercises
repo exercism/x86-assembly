@@ -23,11 +23,11 @@ main() {
     rm -rf build
     cp -r exercises build
 
-    pushd build/concept
-    for exercise in *; do
-        run_tests "${exercise}" "exemplar"
-    done
-    popd
+    # pushd build/concept
+    # for exercise in *; do
+    #     run_tests "${exercise}" "exemplar"
+    # done
+    # popd
 
     pushd build/practice
     for exercise in *; do

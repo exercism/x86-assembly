@@ -8,7 +8,7 @@ run_tests() {
     cd "$1"
 
     sed -i.bak 's#TEST_IGNORE();#// &#' "${file}"_test.c
-    mv example.asm "${file}".asm
+    mv .meta/example.asm "${file}".asm
 
     make clean
     make

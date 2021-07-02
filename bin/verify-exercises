@@ -3,7 +3,8 @@
 set -e
 
 run_tests() {
-    local file="${1//-/_}"
+    local exercise="$(basename $1)"
+    local file="${exercise//-/_}"
     local implementation_file="${2}"
 
     cd "$1"
@@ -25,19 +26,13 @@ main() {
 
     cd build
 
-    if [[ $# -gt 0 ]]; then
-        for exercise in "$@"; do
-            run_tests "${exercise}"
-        done
-    else
-        for exercise in concept/*; do
-            run_tests "${exercise}" "exemplar"
-        done
+    for exercise_dir in concept/*; do
+        run_tests "${exercise_dir}" "exemplar"
+    done
 
-        for exercise in practice/*; do
-            run_tests "${exercise}" "example"
-        done
-    fi
+    for exercise_dir in practice/*; do
+        run_tests "${exercise_dir}" "example"
+    done
 
 }
 

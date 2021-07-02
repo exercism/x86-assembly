@@ -29,7 +29,11 @@ main() {
             run_tests "${exercise}"
         done
     else
-        for exercise in *; do
+        for exercise in concept/*; do
+            run_tests "${exercise}"
+        done
+
+        for exercise in practice/*; do
             run_tests "${exercise}"
         done
     fi

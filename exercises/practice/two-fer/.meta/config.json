@@ -6,7 +6,7 @@
   "files": {
     "solution": ["two_fer.asm"],
     "test": ["two_fer_test.c"],
-    "example": ["example.asm"]
+    "example": [".meta/example.asm"]
   },
   "source_url": "https://github.com/exercism/problem-specifications/issues/757"
 }

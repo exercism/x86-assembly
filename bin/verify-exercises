@@ -4,16 +4,17 @@ set -e
 
 run_tests() {
     local file="${1//-/_}"
+    local implementation_file="${2}"
 
-    cd "$1"
+    pushd "$1"
 
     sed -i.bak 's#TEST_IGNORE();#// &#' "${file}"_test.c
-    mv example.asm "${file}".asm
+    mv .meta/"${implementation_file}".asm "${file}".asm
 
     make clean
     make
 
-    cd ..
+    popd
 }
 
 main() {
@@ -22,18 +23,17 @@ main() {
     rm -rf build
     cp -r exercises build
 
-    cd build
+    pushd build/concept
+    for exercise in *; do
+        run_tests "${exercise}" "exemplar"
+    done
+    popd
 
-    if [[ $# -gt 0 ]]; then
-        for exercise in "$@"; do
-            run_tests "${exercise}"
-        done
-    else
-        for exercise in *; do
-            run_tests "${exercise}"
-        done
-    fi
-
+    pushd build/practice
+    for exercise in *; do
+        run_tests "${exercise}" "example"
+    done
+    popd
 }
 
 main "$@"
